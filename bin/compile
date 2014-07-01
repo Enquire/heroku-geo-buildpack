@@ -40,7 +40,7 @@ function download_package() {
   location="$3"
 
   mkdir -p $location
-  package="https://${S3_BUCKET}.s3.amazonaws.com/geos-3.4.1.tgz"
+  package="https://${S3_BUCKET}.s3.amazonaws.com/geos-3.4.2.tgz"
   curl $package -s -o - | tar xzf - -C $location
 }
 
@@ -53,7 +53,7 @@ function set-default-env (){
 }
 
 # Retrieve versions
-GEOS_VERSION="3.4.1"
+GEOS_VERSION="3.4.2"
 GDAL_VERSION=$(manifest_version "gdal")
 PROJ_VERSION=$(manifest_version "proj")
 
