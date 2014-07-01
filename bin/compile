@@ -58,6 +58,7 @@ GDAL_VERSION=$(manifest_version "gdal")
 PROJ_VERSION=$(manifest_version "proj")
 
 # Display some information
+echo "branch test"
 echo "Using geos version: ${GEOS_VERSION}" | indent
 echo "Using gdal version: ${GDAL_VERSION}" | indent
 echo "Using proj version: ${PROJ_VERSION}" | indent
