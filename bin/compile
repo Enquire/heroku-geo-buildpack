@@ -11,7 +11,7 @@ set -e
 unset GIT_DIR
 
 # Configuration
-S3_BUCKET="cyberdelia-geo-buildpack"
+S3_BUCKET="enquire-geo"
 
 # Parameters
 BUILD_DIR=$1
@@ -34,13 +34,14 @@ function manifest_version() {
   curl "http://${S3_BUCKET}.s3.amazonaws.com/manifest.${1}" -s -o - | head -n 1
 }
 
+
 function download_package() {
   name="$1"
   version="$2"
   location="$3"
 
   mkdir -p $location
-  package="https://${S3_BUCKET}.s3.amazonaws.com/geos-3.4.1.tgz"
+  package="https://${S3_BUCKET}.s3.amazonaws.com/manifest.${1}"
   curl $package -s -o - | tar xzf - -C $location
 }
 
@@ -53,7 +54,7 @@ function set-default-env (){
 }
 
 # Retrieve versions
-GEOS_VERSION="3.4.1"
+GEOS_VERSION=$(manifest_version "geos")
 GDAL_VERSION=$(manifest_version "gdal")
 PROJ_VERSION=$(manifest_version "proj")
 
